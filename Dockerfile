@@ -7,3 +7,4 @@ RUN pip install --upgrade imutils
 RUN pip install --upgrade scikit-learn
 RUN pip install --upgrade matplotlib
 RUN pip install -q tensorflow==2.0.0-beta1
+RUN apt-get install locate
