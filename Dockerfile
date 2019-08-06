@@ -1,11 +1,11 @@
 FROM tensorflow/tensorflow:2.0.0a0-gpu-py3
 MAINTAINER Spencer Chen
 RUN apt-get -y update
-RUN apt-get install -y nano
+RUN apt-get install -y vim
 RUN pip install --upgrade pip
 RUN pip install numpy scipy scikit-learn pillow h5py keras 
 RUN pip install --upgrade imutils 
 RUN pip install --upgrade scikit-learn
 RUN pip install --upgrade matplotlib
 RUN pip install -q tensorflow==2.0.0-beta1
-RUN apt-get install locate
+RUN apt-get install -y locate
