@@ -1,7 +1,7 @@
-MAINTAINER Spencer Chen
 FROM tensorflow/tensorflow:2.0.0a0-gpu-py3
-RUN apt-get update
-RUN apt-get install nano
+MAINTAINER Spencer Chen
+RUN apt-get -y update
+RUN apt-get install -y nano
 RUN pip install --upgrade pip
 RUN pip install numpy scipy scikit-learn pillow h5py keras 
 RUN pip install --upgrade imutils 
