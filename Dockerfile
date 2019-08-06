@@ -1,3 +1,4 @@
+MAINTAINER Spencer Chen
 FROM tensorflow/tensorflow:2.0.0a0-gpu-py3
 RUN apt-get update
 RUN apt-get install nano
