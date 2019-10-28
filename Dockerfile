@@ -42,6 +42,7 @@ RUN conda install -y python=${python_version} && \
     pip install --upgrade pip && \
     pip install \
       sklearn_pandas \
+      opencv-python \
       tensorflow-gpu \
       cntk-gpu && \
     conda install \
