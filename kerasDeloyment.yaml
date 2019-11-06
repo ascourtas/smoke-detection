@@ -35,4 +35,11 @@ spec:
           requests:
             memory: "32Gi"
             cpu: "4"
-
+    
+        volumeMounts:
+        - mountPath: /src/kerasData
+          name: modeltraining
+      volumes:
+        - name: modeltraining
+          persistentVolumeClaim:
+            claimName: modeltraining
