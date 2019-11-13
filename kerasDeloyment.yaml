@@ -37,7 +37,7 @@ spec:
             cpu: "4"
     
         volumeMounts:
-        - mountPath: /src/kerasData
+        - mountPath: /userdata/kerasData
           name: modeltraining
       volumes:
         - name: modeltraining
