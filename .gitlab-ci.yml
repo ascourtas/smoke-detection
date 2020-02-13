@@ -7,8 +7,8 @@ stages:
 
 build-and-push-job:
   stage: build-and-push
-#   tags:
-#     - build-as-docker
+  tags:
+    - build-as-docker
   script:
     - docker build --no-cache -t gitlab-registry.nautilus.optiputer.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA:0:8} .
     - docker tag gitlab-registry.nautilus.optiputer.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA:0:8} gitlab-registry.nautilus.optiputer.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
