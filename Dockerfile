@@ -74,8 +74,4 @@ ENV LANG=C.UTF-8
 
 ENV PYTHONPATH='/src/:$PYTHONPATH'
 
-WORKDIR /src/keras
-
-EXPOSE 8888
-
-CMD jupyter notebook --port=8888 --ip=0.0.0.0
+WORKDIR /userdata/kerasData
