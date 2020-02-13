@@ -20,7 +20,7 @@ spec:
         effect: "NoSchedule"
       containers:
       - name: keras
-        image: gitlab-registry.nautilus.optiputer.net/byungheon-jeong/keras-smoke-detection
+        image: gitlab-registry.nautilus.optiputer.net/ar-noc/keras-smoke-detection
         securityContext:
           capabilities:
             add:
