@@ -1,15 +1,10 @@
-image: docker:git
-before_script:
-  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN gitlab-registry.nautilus.optiputer.net
-
+image: gcr.io/kaniko-project/executor:debug-v0.16.0
+   
 stages:
   - build-and-push
-
+   
 build-and-push-job:
   stage: build-and-push
-  tags:
-    - build-as-docker
   script:
-    - docker build --no-cache -t gitlab-registry.nautilus.optiputer.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA:0:8} .
-    - docker tag gitlab-registry.nautilus.optiputer.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA:0:8} gitlab-registry.nautilus.optiputer.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}:latest
-    - docker push gitlab-registry.nautilus.optiputer.net/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:${CI_COMMIT_SHA:0:8} --destination $CI_REGISTRY_IMAGE:latest
