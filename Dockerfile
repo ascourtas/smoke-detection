@@ -63,10 +63,10 @@ RUN conda install -y python=${python_version} && \
       theano \
       mkdocs \
       && \
-    git clone git://github.com/keras-team/keras.git /src && pip install -e /src[tests] 
-    # && \
-    # pip install git+git://github.com/keras-team/keras.git && \
+    git clone git://github.com/keras-team/keras.git /src && pip install -e /src[tests] && \
     conda clean -yt
+    # pip install git+git://github.com/keras-team/keras.git && \
+
 
 #ADD theanorc /home/keras/.theanorc
 
