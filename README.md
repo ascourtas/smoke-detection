@@ -44,21 +44,21 @@ If you are planning to use this implementation on another Nautilus namespace, th
 
 
 1. Changing namespace address <br /> <br />
-![Changing the names](screenshots/nautilusDeploymentNamespaceName.png) <br />
+![Changing the names](screenshots/nautilusDeploymentNamespaceName.PNG) <br />
 **Change the name and the namespace entries to the current working namespace and a suitable name**
 
 2. Change the resource requests <br /> <br />
-![Change the resource limits and requests](screenshots/nautilusDeploymentResources.png) <br />
+![Change the resource limits and requests](screenshots/nautilusDeploymentResources.PNG) <br />
 **Change the numbers to suit the task**
 
 
 3. Mount volumne <br /><br />
-![Mount Volume onto a path if already created. To find out how to create a persistent volumne claim, refer to Nautilus documentation](screenshots/nautilusDeploymentStorage.png) <br />
+![Mount Volume onto a path if already created. To find out how to create a persistent volumne claim, refer to Nautilus documentation](screenshots/nautilusDeploymentStorage.PNG) <br />
 **Very important for crash-resistance. I highly recommend saving all work onto mounted directory** 
 
 
 4. Choose GPU type <br /><br />
-![Choose correctly](screenshots/nautilusDeploymentGPUrequest.png)  <br />
+![Choose correctly](screenshots/nautilusDeploymentGPUrequest.PNG)  <br />
 If doing intensive training, choose larger/more expensive GPUs
 
 ## Using the Components
@@ -66,25 +66,25 @@ If doing intensive training, choose larger/more expensive GPUs
 ### Starting the development and accessing jupyter notebook 
 1. Go into kerasDeloyment.yaml file
 2. Choose the RAW file format <br />
-![](screenshots/rawfile.png) <br />
+![](screenshots/rawfile.PNG) <br />
 
 3. copy url of RAW file <br />
-![](screenshots/rawaddress.png) <br />
+![](screenshots/rawaddress.PNG) <br />
 
 4. execute yaml file on nautilius namespace <br />
-![](screenshots/kubectinit.png)
+![](screenshots/kubectinit.PNG)
 
 5. exec into nautilus pod <br />
-![](screenshots/execinto.png)
+![](screenshots/execinto.PNG)
 
 6. Navigate to /userdata/kerasData and Start Jupyter Notebook <br /><br />
-![](screenshots/startjupyter.png)<br />
+![](screenshots/startjupyter.PNG)<br />
 **Note: The port number choice does not matter, as long as there are not other processes running on that port. If a port is already in use, jupyter will automatically assign another port. Make sure to match the port number in the next step** <br /> <br />
-![](screenshots/usingotherports.png)<br />
+![](screenshots/usingotherports.PNG)<br />
 _What happens when a wrong port is chosen_ <br />
 
 7. Go to your computer terminal and start port-forward, matching the port in the pod <br />
-![](screenshots/portforward.png)<br />
+![](screenshots/portforward.PNG)<br />
 
 8. Go to the localhost address<br />
 ![](screenshots/localhostaddress.png)<br />
@@ -92,8 +92,8 @@ _What happens when a wrong port is chosen_ <br />
 9. Test for keras
 Create a new notebook or use the ClassificationExample.ipynb file 
 - Run the following tests <br />
-![](screenshots/firstBatch.png) <br /><br />
-<!-- ![](screenshots/secondBatch.png)<br /><br /> -->
+![](screenshots/firstBatch.PNG) <br /><br />
+<!-- ![](screenshots/secondBatch.PNG)<br /><br /> -->
 **_Make sure that the outputs return True or some name._**<br />
 **You are now ready to use Keras on a jupyter notebook hosted on Kubernetes**
 
@@ -101,11 +101,11 @@ Create a new notebook or use the ClassificationExample.ipynb file
 
 #### EXTREMELY IMPORTANT!
 In order to prevent Keras from assigning too much GPU memory and stalling training efforts later on, run this:
-![](screenshots/hickups.png) <br />
+![](screenshots/hickups.PNG) <br />
 If you see an error, shutdown the network server and try again <br />
-![](screenshots/toolate.png)<br/>
+![](screenshots/toolate.PNG)<br/>
 If you see nvidia-smi memory allocation at 0/- you have suceeded in reseting the GPU <br />
-![](screenshots/nvidiasmireg.png)<br />
+![](screenshots/nvidiasmireg.PNG)<br />
 
 Please refer to [Keras Documentation](https://keras.io/) for instructions and information
 
@@ -117,9 +117,9 @@ I used the notebook for the following:
 ## Using the Fire-Classification training
 
 1. Write the network using Keras layers  <br /> 
-![](screenshots/modelbuild.png) <br /> <br />
+![](screenshots/modelbuild.PNG) <br /> <br />
 2. Set the paths  <br />
-![](screenshots/pathfields.png) <br />
+![](screenshots/pathfields.PNG) <br />
 The following must be set
 - FIRE_PATH = Path of the directory with the fire images
 - Non_FIRE_PATH = Path of the directory with images without fire
@@ -143,9 +143,9 @@ More information is availbe here [pyimagesearch](https://www.pyimagesearch.com/2
 Finally, fill out the INIT_LR from what you learned from above
 ![](screenshots/initlr.png)<br />
 7. Train <br />
-![](screenshots/startTraining.png) <br />
-8. Get results
-![](screenshots/results.png) <br />
+![](screenshots/startTraining.PNG) <br />
+8. Get results <br />
+![](screenshots/results.PNG) <br />
 You will find the accuracy measures in the table. Find the model in fire_detection.model
 
 
