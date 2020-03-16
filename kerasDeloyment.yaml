@@ -1,8 +1,21 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: modeltraining
+  namespace: sage
+spec:
+  storageClassName: rook-cephfs
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: keras
-  namespace: digits
+  namespace: sage
 spec:
   replicas: 1
   selector:
