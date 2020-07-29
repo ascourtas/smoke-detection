@@ -2,7 +2,14 @@
 
 This project allows for the usage of Keras on a jupter notebook in Nautilus (as an importable package). With this project, we are able to train keras models on the Nautilus cloud. 
 
+## Current TODOs
 NOTE: This README is currently outdated and is a WIP.
+Upcoming improvements include:
+- full information about the fork history of the repo
+- instructions on how to fetch updates from various upstream remote repos
+- how to run this on Chameleon
+- how to set up and use the Docker containers given recent improvements
+- any alteration made to the Waggle setup process
 
 ## Getting Started
 
