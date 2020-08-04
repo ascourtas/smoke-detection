@@ -2,6 +2,8 @@
 
 This project allows for the usage of Keras on a jupter notebook in Nautilus (as an importable package). With this project, we are able to train keras models on the Nautilus cloud. 
 
+NOTE: This README is currently outdated and is a WIP.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your namespace. 
