@@ -24,7 +24,7 @@ open.
 Once the container is running, you should see output similar to the following. Open the link 
 your browser to use the interactive Jupyter notebook.
 
-
+![alt text](/docs/images/jupyter_output.png "output of running Docker container")
 
 ## Code maintenance
 ### Parent repositories
