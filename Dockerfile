@@ -44,7 +44,7 @@ RUN conda install -y python=${python_version} && \
     pip install \
       sklearn_pandas \
       opencv-python \
-      tensorflow-gpu==2.0.0 \
+      tensorflow-gpu \
       cntk-gpu && \
     conda install \
       bcolz \
@@ -75,4 +75,9 @@ ENV LANG=C.UTF-8
 
 ENV PYTHONPATH='/src/:$PYTHONPATH'
 
+RUN mkdir /userdata/kerasData/
 WORKDIR /userdata/kerasData
+
+COPY . /userdata/kerasData
+
+CMD ["jupyter", "trust", "--ip=0.0.0.0", "--port=9008"]
