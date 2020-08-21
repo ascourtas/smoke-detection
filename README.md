@@ -29,7 +29,14 @@ your browser to use the interactive Jupyter notebook.
 ## Code maintenance
 ### Parent repositories
 
-This repository is forked from 
+This repository is forked from https://gitlab.nautilus.optiputer.net/i3perez/keras-smoke-detection/-/tree/master, 
+which is forked from https://gitlab.nautilus.optiputer.net/ar-noc/keras-smoke-detection/-/tree/670a1c6c2feb4e9f08acf42a6bbd35e2b9190b35 
+
+Both may be set as upstream remotes for this repository. For example, once established, you can view your 
+remotes via `git remote -v`
+![alt text](/docs/images/remote_list.png "output of git remote -v")
+
+To view 
 
 ### Current TODOs
 NOTE: This repo is a WIP.
