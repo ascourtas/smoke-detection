@@ -18,6 +18,10 @@ To run the container:
 
 `docker run -it -p 9000:9000 <desired_name_of_image>`
 
+To run the container, and be able to save changes made to the Jupyter notebook:
+
+`docker run -it -p 9000:9000 -v <local_project_path>/smoke-detection/src:/userdata/kerasData <desired_container_name>`
+
 The choice of ports (in this case, 9000) is arbitrary, replace it with whatever ports you have 
 open.
 
