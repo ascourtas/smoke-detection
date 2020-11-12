@@ -1,6 +1,23 @@
-ARG cuda_version=10.0
+ARG cuda_version=10.1
 ARG cudnn_version=7
 FROM nvidia/cuda:${cuda_version}-cudnn${cudnn_version}-devel
+
+ENV NB_USER kerasTester
+ENV NB_UID 1000
+# RUN mkdir /userdata/kerasData
+
+RUN apt-get update && \
+      apt-get -y install sudo
+
+RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
+    # chown $NB_USER $CONDA_DIR -R && \
+    # chown $NB_USER /userdata/kerasData -R && \
+    #    chown $NB_USER / -R && \
+    # mkdir -p / && \
+    sh -c 'echo "$NB_USER:test" | chpasswd' && \
+    usermod -aG sudo $NB_USER
+
+WORKDIR /userdata/kerasData
 
 # Install system packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -12,29 +29,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
       libhdf5-dev \
       openmpi-bin \
       xvfb \
+      screen \
       wget && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && mkdir /userdata/kerasData/output
 
 # Install conda
 ENV CONDA_DIR /opt/conda
 ENV PATH $CONDA_DIR/bin:$PATH
 
-RUN wget --quiet --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-4.2.12-Linux-x86_64.sh && \
-    echo "c59b3dd3cad550ac7596e0d599b91e75d88826db132e4146030ef471bb434e9a *Miniconda3-4.2.12-Linux-x86_64.sh" | sha256sum -c - && \
-    /bin/bash /Miniconda3-4.2.12-Linux-x86_64.sh -f -b -p $CONDA_DIR && \
-    rm Miniconda3-4.2.12-Linux-x86_64.sh && \
-    echo export PATH=$CONDA_DIR/bin:'$PATH' > /etc/profile.d/conda.sh
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+    rm ~/miniconda.sh && \
+    /opt/conda/bin/conda clean -tipsy && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
 
 # Install Python packages and keras
-ENV NB_USER keras
-ENV NB_UID 1000
-
-RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
-    chown $NB_USER $CONDA_DIR -R && \
-    mkdir -p /src && \
-    chown $NB_USER /src
-
-USER $NB_USER
 
 ARG python_version=3.6
 
@@ -49,6 +60,7 @@ RUN conda install -y python=${python_version} && \
     conda install \
       bcolz \
       h5py \
+      statsmodels \
       matplotlib \
       mkl \
       nose \
@@ -62,11 +74,15 @@ RUN conda install -y python=${python_version} && \
       six \
       theano \
       mkdocs \
-      && \
-    git clone git://github.com/keras-team/keras.git /src && pip install -e /src[tests] && \
-    conda clean -yt
+      numpy=1.18
+
+RUN pip install keras
+
+# RUN git clone git://github.com/keras-team/keras.git /src && pip install -e /src[tests]
+RUN conda clean -yt
     # pip install git+git://github.com/keras-team/keras.git && \
 
+USER $NB_USER
 
 #ADD theanorc /home/keras/.theanorc
 
@@ -75,9 +91,8 @@ ENV LANG=C.UTF-8
 
 ENV PYTHONPATH='/src/:$PYTHONPATH'
 
-RUN mkdir /userdata/kerasData/
-WORKDIR /userdata/kerasData
+COPY ./imageLoader.py /userdata/kerasData
 
-COPY . /userdata/kerasData
+#RUN jupyter trust ./ClassificationExample.ipynb
 
-CMD ["jupyter", "trust", "--ip=0.0.0.0", "--port=9008"]
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=9000"]
