@@ -18,12 +18,15 @@ To run the container:
 
 `docker run -it -p 9000:9000 <desired_name_of_image>`
 
+The choice of ports (in this case, 9000) is arbitrary, replace it with whatever ports you have 
+open.
+
 To run the container, and be able to save changes made to the Jupyter notebook:
 
 `docker run -it -p 9000:9000 -v <local_project_path>/smoke-detection/src:/userdata/kerasData <desired_container_name>`
 
-The choice of ports (in this case, 9000) is arbitrary, replace it with whatever ports you have 
-open.
+The `-v` option treats the `/src` folder as a Docker volume for persistent data storage. Changes made in this folder 
+persist past the life of the Docker container.
 
 Once the container is running, you should see output similar to the following. Open the link 
 your browser to use the interactive Jupyter notebook.
@@ -40,6 +43,12 @@ Both may be set as upstream remotes for this repository. For example, once estab
 remotes via `git remote -v`
 
 ![output of git remote -v](/docs/images/remote_list.png "output of git remote -v")
+
+### Working with Docker
+
+If you've accumulated a bunch of dangling images (denoted by the `<none>` name and tag) then you can clear them with:
+
+`docker system prune`
 
 ### Current TODOs
 NOTE: This repo is a WIP.
