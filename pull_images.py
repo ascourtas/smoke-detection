@@ -19,13 +19,8 @@ for link in soup.find_all('a'):
 
     full_url = os.path.join(url, filename)
 
-    # image = urllib.request.urlretrieve(full_path, filename + "tmp")
-    # with open(image, "wb") as f:
-    #     f.write(image)
-
-
-
     # Open the url image, set stream to True, this will return the stream content.
+    # code below borrowed from https://towardsdatascience.com/how-to-download-an-image-using-python-38a75cfa21c
     r = requests.get(full_url, stream=True)
 
     # Check if the image was retrieved successfully
