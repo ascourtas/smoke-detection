@@ -58,8 +58,10 @@ If you've accumulated a bunch of dangling images (denoted by the `<none>` name a
 4. `ssh` into EC2 instance. Pull down appropriate images from HPWREN. 
 
 `ssh -i <path to private key you generated> ec2-user@<DNS iPV4 name of instance>`
+
 5. Untar the file.
 6. Copy over images to S3 bucket.
+
 `aws s3 cp my_image_folder s3://my_bucket/dest_folder_name --recursive`
 
 #### Once the S3 bucket has been populated
