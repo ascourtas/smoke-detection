@@ -50,6 +50,25 @@ If you've accumulated a bunch of dangling images (denoted by the `<none>` name a
 
 `docker system prune`
 
+### Working with AWS
+#### Set everything up
+1. Set up EC2 G or P instance with at least 75GB of EBS storage.
+2. Create an IAM Role that allows for all S3 policies. Assign the role to the EC2 instance from Step 1.
+3. Create an S3 bucket. 
+4. `ssh` into EC2 instance. Pull down appropriate images from HPWREN. 
+
+`ssh -i <path to private key you generated> ec2-user@<DNS iPV4 name of instance>`
+5. Untar the file.
+6. Copy over images to S3 bucket.
+`aws s3 cp my_image_folder s3://my_bucket/dest_folder_name --recursive`
+
+#### Once the S3 bucket has been populated
+1. If the EC2 bucket doesn't already have the files from the S3 bucket, `cp` them over.
+2. Build the Docker container
+3. Run the container (see command above)
+
+
+
 ### Current TODOs
 NOTE: This repo is a WIP.
 Upcoming improvements include:
