@@ -78,3 +78,4 @@ Upcoming improvements include:
 - how to set up and use the Docker containers given recent improvements
 - any alteration made to the Waggle setup process
 - code restructuring and changes pulled in from ar-noc, which are in local branches but have yet to be pushed
+- better documentation and cleaning up deprecated files
