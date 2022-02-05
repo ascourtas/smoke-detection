@@ -50,6 +50,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.7.12.1-Linux-x
 ARG python_version=3.6
 
 RUN conda config --append channels conda-forge
+# may need to install cntk-gpu with Conda instead :/ should also try larger EC2 instance in case it was a storage thing
 RUN conda install -y python=${python_version} && \
     pip install --upgrade pip && \
     pip install \

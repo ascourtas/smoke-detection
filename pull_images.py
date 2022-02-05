@@ -6,7 +6,7 @@ import shutil
 
 
 
-url = "http://hpwren.ucsd.edu/HPWREN-FIgLib/HPWREN-FIgLib-Data/20160604_FIRE_rm-n-mobo-c/"
+url = "http://hpwren.ucsd.edu/HPWREN-FIgLib/HPWREN-FIgLib-Data/20191001_FIRE_bh-w-mobo-c/"
 req = requests.get(url)
 soup = BeautifulSoup(req.content, 'html.parser')
 print(soup.prettify())
@@ -14,7 +14,7 @@ print(soup.prettify())
 for link in soup.find_all('a'):
     print(link.get('href'))
     filename = link.get('href')
-    if filename.split(".")[-1] not in ["jpg", "jpeg", "mp4"]:
+    if filename.split(".")[-1] not in ["mp4", "jpg", "jpeg"]:
         continue
 
     full_url = os.path.join(url, filename)
